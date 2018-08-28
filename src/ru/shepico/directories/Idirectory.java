@@ -6,5 +6,5 @@ public interface Idirectory {
     boolean removeElement();
     boolean changeElement();
     boolean toArchiveElement();
-    boolean fromArchiveElemant();
+    boolean fromArchiveElement();
 }
