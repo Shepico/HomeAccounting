@@ -1,4 +1,4 @@
-package ru.shepico.directories;
+package ru.shepico.homeacc.directories;
 
 public class Account implements Idirectory {
     private String name;
@@ -9,14 +9,23 @@ public class Account implements Idirectory {
         this.name = name;
         this.currency = currency;
         this.parent = parent;
-        this.addElement();
+        //this.addElement();
 
     }
 
     @Override
-    public boolean addElement() {
-
-        return false;
+    public String addElement(String[] value ) {
+        String newName = "";
+        for (int i=0; i<value.length; i++) {
+            if ("".equals(newName)) {
+                newName = "'" + value[i] + "'";
+            }
+            else {
+                 newName = newName + ", '" + value[i] + "'";
+             }
+        }
+        String sqlQuery = "INSERT INTO account (acc_name) VALUES ('" + newName + "');";
+        return sqlQuery;
     }
 
     @Override

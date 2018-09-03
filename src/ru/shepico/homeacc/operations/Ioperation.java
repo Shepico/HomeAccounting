@@ -1,4 +1,4 @@
-package ru.shepico.operations;
+package ru.shepico.homeacc.operations;
 
 public interface Ioperation {
     boolean addOperation();

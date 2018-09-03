@@ -1,8 +1,8 @@
-package ru.shepico.directories;
+package ru.shepico.homeacc.directories;
 
 public interface Idirectory {
 
-    boolean addElement ();
+    String addElement (String[] str);
     boolean removeElement();
     boolean changeElement();
     boolean toArchiveElement();
