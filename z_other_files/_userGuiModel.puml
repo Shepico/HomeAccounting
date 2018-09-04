@@ -1,0 +1,29 @@
+@startuml
+salt
+{
+{* File | Catalog | About}
+
+{
+    {[add] | [remove]} | {[add]|[change]|[remove]}
+    {T
+        +Карточка
+        ++Автомобиль
+        ++Гараж
+        +Кошелек
+        ++На кота
+
+    }|
+    {+
+       {/ <b>Category | Operation}
+       {#
+       Date | Type | Account | Category/Account | Description
+       12.03.2018 | приход | Карта | Зарплата | Доп
+       14.03.2018 | расход | Карта | Бензин | нет
+       16.03.2018 | перемещение | Карта | Кошелек | на нужды
+        }
+    }
+
+}
+
+}
+@enduml
