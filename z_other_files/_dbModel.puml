@@ -1,5 +1,3 @@
-
-
 @startuml
 !define table(name, desk) class name as "desk" << (T,#FFAAAA) >>
 !define primary_key(x) <u><b>x</b></u>
@@ -8,34 +6,33 @@ hide methods
 hide stereotypes
 
 table(Currency, Currency\nВалюта) {
-  primary_key(id)
-  name String_20
+  primary_key(id Integer AutoIncrement)
+  name [String, NotNull, Unique]
 }
 
 table(Account, Account\nCчета) {
-  primary_key(id)
-  name
-  fk_index(currency_id-->Currency:id)
+  primary_key(id Integer AutoIncrement)
+  name [String, NotNull, Unique]
+  group [Boolean, NotNull]
+  fk_index(currency_id-->Currency:id [NotNull])
   fk_index(parent_id-->id)
 }
 
 table(Category, Category\nКатегория) {
-  primary_key(id)
-  name
+  primary_key(id Integer AutoIncrement)
+  name [String, NotNull]
+  group [Boolean, NotNull]
   fk_index(parent_id-->id)
 }
 
 table(Transaction, Transaction\nОперации) {
-    primary_key(id)
-    fk_index(account_id)
-    date DateTime
-    dir Enum
-    fk_index(category_id-->Category:id)
-    source
-    total
-    volume
-    amount
-    description
+    primary_key(id Integer AutoIncrement)
+    date [DateTime , NotNull]
+    type [Enum, NotNull]
+    summa [Double 12.2, NotNull]
+    fk_index(account_id-->id [NotNull])
+    fk_index(category_id-->Category:id [NotNull])
+    description [String, NotNull]
 }
 
 ' relationships
@@ -50,7 +47,6 @@ Category --> Transaction : "id-->category_id"
 
 ' many to many relationship
 ' Add mark if you like
-
 
 @enduml
 
