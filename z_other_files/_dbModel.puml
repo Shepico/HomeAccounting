@@ -15,24 +15,34 @@ table(Account, Account\nCчета) {
   name [String, NotNull, Unique]
   group [Boolean, NotNull]
   fk_index(currency_id-->Currency:id [NotNull])
-  fk_index(parent_id-->id)
+  fk_index(parent_id-->Account:id)
+  amount_begin [double 12.2 NotNull]
 }
 
 table(Category, Category\nКатегория) {
   primary_key(id Integer AutoIncrement)
   name [String, NotNull]
   group [Boolean, NotNull]
-  fk_index(parent_id-->id)
+  fk_index(parent_id-->Category:id)
 }
 
 table(Transaction, Transaction\nОперации) {
     primary_key(id Integer AutoIncrement)
     date [DateTime , NotNull]
     type [Enum, NotNull]
-    summa [Double 12.2, NotNull]
+    amount [Double 12.2, NotNull]
     fk_index(account_id-->id [NotNull])
-    fk_index(category_id-->Category:id [NotNull])
+    fk_index(whereAccount_id-->Account:id)
+    fk_index(category_id-->Category:id )
     description [String, NotNull]
+}
+
+table(Period, Period\nПериод) {
+    primary_key(date_begin DateTime NotNull)
+    primary_key(account_id-->Account:id NotNull)
+    amountPlus [double 12.2]
+    amountMinus [double 12.2]
+    amountTotal [double 12.2]
 }
 
 ' relationships
@@ -41,6 +51,7 @@ table(Transaction, Transaction\nОперации) {
 ' one to may relationship
 Account --> Account : "id-->parent_id"
 Account --> Transaction : "id-->account_id"
+Account --> Period : "id-->account_id"
 Currency --> Account : "id-->current_id"
 Category --> Category : "id-->parent_id"
 Category --> Transaction : "id-->category_id"
