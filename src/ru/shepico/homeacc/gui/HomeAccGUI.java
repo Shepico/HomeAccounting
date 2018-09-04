@@ -8,16 +8,35 @@ import java.awt.*;
 import java.util.Vector;
 
 public class HomeAccGUI extends JFrame {
-    private Panel mainPanel;
+    private final JPanel mainPanel = new JPanel(new BorderLayout());
+    private JPanel leftPanel;
+    private JPanel rightTrnPanel;
+    private JPanel rightCatPanel;
+    //
+    private JPanel leftBtnPanel;
+    private JPanel rightBtnTrnPanel;
+    private JPanel rightBtnCatPanel;
+    //
+    private final Button btnAddAccount = new Button("Add");
+    private final Button btnRemoveAccount = new Button("Remove");
+    private final Button btnAddTransaction = new Button("Add");
+    private final Button btnRemoveTransaction = new Button("Remove");
+    private final Button btnChangeTransaction  = new Button("Change");
+    private final Button btnAddCategory = new Button("Add");;
+    private final Button btnRemoveCategory = new Button("Remove");
+    //
+    private JTabbedPane paneTrsCat;
+    private JTable transactions;
+    //
     private JTree accountTree;
-    private JTabbedPane catOper;
-    private JTable tableOperation;
-    private JTable tableCurrency;
+    private JTree categoryTree;
+    private JMenuBar mainMenu;
 
-    private final Button btnAddAccount = new Button("Счет+");
-    private final Button btnRemoveAccount = new Button("Счет-");
-    private final Panel pnlAccount = new Panel();
-    private final Panel pnlCategoryOperation = new Panel();
+    //private JTable tableCurrency;
+
+
+    //private final Panel pnlAccount = new Panel();
+    //private final Panel pnlCategoryOperation = new Panel();
 
 
     //constructor
@@ -31,8 +50,8 @@ public class HomeAccGUI extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //setIconImage();
         //
-        mainPanel = new Panel();
-        mainPanel.setLayout(new BorderLayout());
+       /* mainPanel = new Panel();
+        mainPanel.setLayout(new BorderLayout());*/
         //
         String     root  = "Счета";
         String[]   nodes = new String[]  {"Наличка", "Карты"};
@@ -56,28 +75,29 @@ public class HomeAccGUI extends JFrame {
                 table.put(nodes[i], String.valueOf(i));
             }*/
 
-        accountTree = new JTree(data);
-        accountTree.setRootVisible(true);
-        //
-        JPanel panelWestButton = new JPanel();
-        panelWestButton.add(btnAddAccount);
-        panelWestButton.add(btnRemoveAccount);
 
-        JPanel panelWest = new JPanel();
-        panelWest.setLayout(new BoxLayout(panelWest, BoxLayout.Y_AXIS));
-        panelWest.add(panelWestButton);
-        panelWest.add(accountTree);
-        //mainPanel.add(accountTree, BorderLayout.WEST);
-        mainPanel.add(panelWest, BorderLayout.WEST);
-        catOper = new JTabbedPane();
+        //accountTree.setRootVisible(true);
         //
-        Vector<String> headerVect = new Vector<String>();
+
+
+        /*JPanel panelWest = new JPanel();*/
+        initMenu();
+        setJMenuBar(mainMenu);
+
+        /*mainPanel.add(accountTree, BorderLayout.WEST);*/
+        initPaneLeft();
+        mainPanel.add(leftPanel, BorderLayout.WEST);
+        /*mainPanel.add(leftBtnPanel, BorderLayout.WEST);
+        mainPanel.add(accountTree, BorderLayout.WEST);
+
+        //
+        /*Vector<String> headerVect = new Vector<String>();
         headerVect.add("Aa");
         headerVect.add("Bb");
         headerVect.add("Cc");
         headerVect.add("Dd");
         DefaultTableModel mod = new DefaultTableModel(headerVect, 0);
-        tableOperation = new JTable(6,4);
+
         tableOperation.setModel(mod);
 
         Vector<String> newRow = new Vector<>();
@@ -87,16 +107,13 @@ public class HomeAccGUI extends JFrame {
         newRow.add("Кошелек");
         mod.addRow(newRow);
 
-        //
-        tableCurrency = new JTable (6,2);
+        //*/
+        //tableCurrency = new JTable (6,2);
         //
 
         //
-        catOper.addTab("Операции", tableOperation);
-        catOper.addTab("Категории", new JTree());
-        catOper.addTab("Валюты", tableCurrency);
-
-        mainPanel.add(catOper, BorderLayout.CENTER);
+        initPaneRight();
+        mainPanel.add(paneTrsCat, BorderLayout.CENTER);
 
         //
         add(mainPanel);
@@ -105,12 +122,74 @@ public class HomeAccGUI extends JFrame {
         setVisible(true);
 
         //
-        SQLconnect db = new SQLconnect();
-        db.selectData("SELECT * FROM currency;");
+        //SQLconnect db = new SQLconnect();
+        //db.selectData("SELECT * FROM currency;");
 
 
     }
 
+    private void initPaneLeft() {
+        leftBtnPanel = new JPanel();
+        leftBtnPanel.add(btnAddAccount);
+        leftBtnPanel.add(btnRemoveAccount);
+        //
+        accountTree = new JTree();
+        //
+        leftPanel = new JPanel();
+        //leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setLayout(new BorderLayout());
+
+        leftPanel.add(leftBtnPanel,BorderLayout.NORTH);
+        leftPanel.add(accountTree,BorderLayout.CENTER);
+    }
+
+    private void initPaneRight() {
+        transactions = new JTable(6,5);
+        categoryTree = new JTree();
+        //
+        rightBtnTrnPanel = new JPanel();
+
+        rightBtnTrnPanel.add(btnAddTransaction);
+        rightBtnTrnPanel.add(btnRemoveTransaction);
+        rightBtnTrnPanel.add(btnChangeTransaction);
+        //
+        rightBtnCatPanel = new JPanel();
+        rightBtnCatPanel.add(btnAddCategory);
+        rightBtnCatPanel.add(btnRemoveCategory);
+        //
+        rightTrnPanel = new JPanel();
+        //rightTrnPanel.setLayout(new BoxLayout(rightTrnPanel, BoxLayout.Y_AXIS));
+        rightTrnPanel.setLayout(new BorderLayout());
+        rightTrnPanel.add(rightBtnTrnPanel, BorderLayout.NORTH);
+        rightTrnPanel.add(transactions, BorderLayout.CENTER);
+        //
+        rightCatPanel = new JPanel();
+        //rightCatPanel.setLayout(new BoxLayout(rightCatPanel, BoxLayout.Y_AXIS));;
+        rightCatPanel.setLayout(new BorderLayout());;
+        rightCatPanel.add(rightBtnCatPanel, BorderLayout.NORTH);
+        rightCatPanel.add(categoryTree, BorderLayout.CENTER);
+        //
+        paneTrsCat = new JTabbedPane();
+        paneTrsCat.addTab("Transaction", rightTrnPanel);
+        paneTrsCat.addTab("Category", rightCatPanel);
+
+    }
+
+    private void initMenu() {
+        mainMenu = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("File");
+        JMenu catalogMenu = new JMenu("Catalog");
+        JMenu aboutMenu = new JMenu("About");
+
+        JMenuItem menuItem = new JMenuItem("Currency");
+        catalogMenu.add(menuItem);
+
+        mainMenu.add(fileMenu);
+        mainMenu.add(catalogMenu);
+        mainMenu.add(aboutMenu);
+
+    }
 
 
     //
