@@ -1,0 +1,77 @@
+@startuml
+
+class Account {
+private String name;
+private boolean group;
+private int currency;
+private Account parent;
+private double amountBegin;
+Account() - конструктор
+setParent()
+getParent()
+setCurency()
+getCurrency()
+renameAccount()
+changeAmount()
+}
+
+class Category {
+private String name;
+private boolean group;
+private Category parent;
+Category() - конструктор
+renameCategory()
+moveCategory()
+}
+
+class Transaction {
+private Date date;
+private TypeOperation type;
+private double amiunt;
+private Account account;
+private Account whereAccount;
+private int category;
+private String description;
+Transaction() - конструктор
+addTransaction()
+}
+
+class PeriodTotal {
+private Date dateBegin;
+private Account account;
+private double amountMinus;
+private double amountPlus;
+private double amountTotal;
+private Transaction[] arrayTransaction;
+PeriodTotal() - конструктор
+getAmountTotal(Account account)
+getTransactionPeriod (Account account, Date date)
+}
+
+enum TypeOperation {
+ARRIVAL (Приход)
+SPENDING (Расход)
+TRANSFER (Перемещение)
+}
+
+enum TypeCategory {
+ARRIVAL (Приход)
+SPENDING (Расход)
+}
+
+Transaction <|-- TypeOperation
+Category <|-- TypeCategory
+Category --|> Transaction
+Account --|> Transaction
+Account --|> PeriodTotal
+Transaction --|> PeriodTotal
+
+class ConnectSQL{
+private Connection connect;
+private Statement sttm;
+}
+
+class UserGUI {
+}
+
+@enduml

@@ -24,6 +24,7 @@ table(Category, Category\nКатегория) {
   name [String, NotNull]
   group [Boolean, NotNull]
   fk_index(parent_id-->Category:id)
+  type [Enum, NotNull]
 }
 
 table(Transaction, Transaction\nОперации) {
