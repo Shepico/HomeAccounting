@@ -1,0 +1,64 @@
+@startuml
+!define table(name, desk) class name as "desk" << (T,#FFAAAA) >>
+!define primary_key(x) <u><b>x</b></u>
+!define fk_index(x) <color:green><b>x</b></color>
+hide methods
+hide stereotypes
+
+table(Currency, Currency\nВалюта) {
+  primary_key(id Integer AutoIncrement NotNull)
+  name [String 150, NotNull, Unique]
+}
+
+table(Account, Account\nCчета) {
+  primary_key(id Integer AutoIncrement NotNull)
+  name [String 150, NotNull, Unique]
+  group [Boolean, NotNull [default :false]]
+  fk_index(currency_id-->Currency:id [NotNull])
+  fk_index(parent_id-->Account:id)
+  amount_begin [double 12.2 NotNull [default :0]]
+}
+
+table(Category, Category\nКатегория) {
+  primary_key(id Integer AutoIncrement)
+  name [String 150, NotNull]
+  group [Boolean, NotNull [default :false]]
+  fk_index(parent_id-->Category:id)
+  type [Enum, NotNull]
+}
+
+table(Transaction, Transaction\nОперации) {
+    primary_key(id Integer AutoIncrement)
+    date [DateTime , NotNull]
+    type [Enum, NotNull]
+    amount [Double 12.2, NotNull [defult :0]]
+    fk_index(account_id-->Account:id [NotNull])
+    fk_index(whereAccount_id-->Account:id)
+    fk_index(category_id-->Category:id NotNull)
+    description [String]
+}
+
+table(Period, Period\nПериод) {
+    primary_key(date_begin DateTime NotNull)
+    primary_key(account_id-->Account:id [NotNull])
+    amountPlus [double 12.2]
+    amountMinus [double 12.2]
+    amountTotal [double 12.2]
+}
+
+' relationships
+' one-to-one relationship
+
+' one to may relationship
+Account --> Account : "id-->parent_id"
+Account --> Transaction : "id-->account_id"
+Account --> Period : "id-->account_id"
+Currency --> Account : "id-->current_id"
+Category --> Category : "id-->parent_id"
+Category --> Transaction : "id-->category_id"
+
+' many to many relationship
+' Add mark if you like
+
+@enduml
+
