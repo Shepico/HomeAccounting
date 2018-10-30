@@ -1,5 +1,6 @@
 package ru.shepico.homeacc;
 
+import ru.shepico.homeacc.gui.MainWindow;
 import ru.shepico.homeacc.gui.UserLogin;
 
 import javax.swing.*;
@@ -11,7 +12,8 @@ public class HomeAccMain implements ActionListener {
     public static void main (String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                initLoginWindow();
+                //initLoginWindow();
+                initMainWindow();
             }
         });
     }
@@ -19,6 +21,11 @@ public class HomeAccMain implements ActionListener {
     private static void initLoginWindow() {
         JFrame loginWindow = new UserLogin();
     }
+
+    private static void initMainWindow(){
+        JFrame mainWindow = new MainWindow();
+    }
+
 
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();

@@ -9,8 +9,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-/*public class HomeAccGUI extends JFrame{
-    private final JPanel mainPanel = new JPanel(new BorderLayout());
+public class MainWindow extends JFrame{
+    private final String TITLE = "Home accounting";
+    //
+    private JMenuBar mainMenu;
+
+    /*private final JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel leftPanel;
     private JPanel rightTrnPanel;
     private JPanel rightCatPanel;
@@ -32,22 +36,32 @@ import java.util.Vector;
     //
     private JTree accountTree;
     private JTree categoryTree;
-    private JMenuBar mainMenu;
+
 
     //private JTable tableCurrency;
 
 
     //private final Panel pnlAccount = new Panel();
-    //private final Panel pnlCategoryOperation = new Panel();
+    //private final Panel pnlCategoryOperation = new Panel();*/
 
 
     //constructor
-    private HomeAccGUI() {
-        initFrame();
+    public MainWindow() {
+        setTitle(TITLE);
+        // setIconImage(); //Установить иконку приложения
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //
+        initMenu();
+        setJMenuBar(mainMenu);
+        //
+        setLocationRelativeTo(null);
+        pack();
+        setVisible(true);
+        setExtendedState(MAXIMIZED_BOTH); //Развернуть максимально окно
     }
     //end
 
-    private void initFrame(){
+    /*private void initFrame(){
         setTitle("HomeAcc");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //setIconImage();
@@ -175,27 +189,44 @@ import java.util.Vector;
         paneTrsCat.addTab("Transaction", rightTrnPanel);
         paneTrsCat.addTab("Category", rightCatPanel);
 
-    }
+    }*/
 
-    private void initMenu() {
+    private void initMenu(){
         mainMenu = new JMenuBar();
-
+        //
         JMenu fileMenu = new JMenu("File");
         JMenu catalogMenu = new JMenu("Catalog");
-        JMenu aboutMenu = new JMenu("About");
+        JMenu helpMenu = new JMenu("Help");
+        //
+        JMenu operationMenu = new JMenu("Operation");
+        JMenuItem viewOperationItem = new JMenuItem("View");
+        JMenuItem createOperationItem = new JMenuItem("Create");
+        operationMenu.add(viewOperationItem);
+        operationMenu.add(createOperationItem);
+        JMenuItem exitItem = new JMenuItem("Exit");
 
-        JMenuItem menuItem = new JMenuItem("Currency");
-        //menuItem.addMouseListener(new MouseEventListener());
-        catalogMenu.add(menuItem);
-
+        fileMenu.add(operationMenu);
+        fileMenu.add(exitItem);
+        //
+        JMenuItem categoryItem = new JMenuItem("Category");
+        JMenuItem accountItem = new JMenuItem("Account");
+        JMenuItem currencyItem = new JMenuItem("Currency");
+        catalogMenu.add(categoryItem);
+        catalogMenu.add(accountItem);
+        catalogMenu.add(currencyItem);
+        //
+        JMenuItem descItem = new JMenuItem("Description");
+        JMenuItem aboutItem = new JMenuItem("About");
+        helpMenu.add(descItem);
+        helpMenu.add(aboutItem);
+        //
         mainMenu.add(fileMenu);
         mainMenu.add(catalogMenu);
-        mainMenu.add(aboutMenu);
-
+        mainMenu.add(helpMenu);
     }
 
 
-    //
+    /*
     public static void main (String[] args){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -203,9 +234,8 @@ import java.util.Vector;
                 new HomeAccGUI();
             }
         });
-    }
+    }*/
 
-    }
+    //}
 }
 
-*/
