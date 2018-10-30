@@ -1,6 +1,6 @@
 package ru.shepico.homeacc.directories;
 
-public class Currency implements Idirectory {
+public class Currency { //} implements Idirectory {
     private int id;
     private String name;
 
@@ -14,7 +14,7 @@ public class Currency implements Idirectory {
         return (this.id + " " + this.name);
     }
 
-    @Override
+   /* @Override
     public String addElement(String[] newName) {
         String sqlQuery = "INSERT INTO currency (crcy_name) VALUES ('" + newName[0] + "');";
         return sqlQuery;
@@ -39,5 +39,5 @@ public class Currency implements Idirectory {
     @Override
     public boolean fromArchiveElement() {
         return false;
-    }
+    }*/
 }
