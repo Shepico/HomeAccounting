@@ -17,11 +17,10 @@ public class UserLogin extends JFrame{
     private JButton btnLogin;
     private JButton btnCheckInField;
     private JLabel titleWindow;
-    private HomeAccMain listener;
+    //private HomeAccMain listener;
 
 
-    public UserLogin () {
-        listener = new HomeAccMain();
+    public UserLogin (HomeAccMain listener) {
         //
         setTitle(TITLE);
         //setIconImage();  Иконка окна входа
@@ -60,6 +59,10 @@ public class UserLogin extends JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
 
+    }
+
+    public void changeVisible() {
+        setVisible(!isVisible());
     }
 
     /*public void actionPerformed(ActionEvent e) {
