@@ -1,15 +1,12 @@
 package ru.shepico.homeacc.gui;
 
+import ru.shepico.homeacc.HomeAccMain;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
 
-public class UserLogin extends JFrame implements ActionListener{
-    /*private final int WIDTH_WINDOW = 400;
-    private final int HEIGHT_WINDOW = 600;*/
+public class UserLogin extends JFrame{
     private final int GAP_TABLE = 5;
     private final String TITLE = "Login user";
     //
@@ -20,9 +17,12 @@ public class UserLogin extends JFrame implements ActionListener{
     private JButton btnLogin;
     private JButton btnCheckInField;
     private JLabel titleWindow;
+    private HomeAccMain listener;
 
 
     public UserLogin () {
+        listener = new HomeAccMain();
+        //
         setTitle(TITLE);
         //setIconImage();  Иконка окна входа
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,12 +41,11 @@ public class UserLogin extends JFrame implements ActionListener{
         emailField = new JFormattedTextField();
         passwordField = new JPasswordField();
         btnLogin = new JButton("Login");
-        btnLogin.addActionListener(this);
+        btnLogin.addActionListener(listener);
         btnCheckInField = new JButton("Check in");
-        //checkInField.setBackground(false);
         btnCheckInField.setContentAreaFilled(false);
         btnCheckInField.setBorder(null);
-        btnCheckInField.addActionListener(this);
+        btnCheckInField.addActionListener(listener);
         //////////////////
         pnlMain = new JPanel(new GridLayout(5,1, GAP_TABLE, GAP_TABLE));
         pnlMain.add(titleWindow);
@@ -63,12 +62,14 @@ public class UserLogin extends JFrame implements ActionListener{
 
     }
 
-    public void actionPerformed(ActionEvent e) {
+    /*public void actionPerformed(ActionEvent e) {
         if (btnLogin.equals(e.getSource())) {
+            //Здесь подключится к базе и проверить пользователя
             System.out.println("connect");
         }else if (btnCheckInField.equals(e.getSource())) {
+            //Здесь провести регистрацию пользователя
             System.out.println("check in");
         }
 
-    }
+    }*/
 }
