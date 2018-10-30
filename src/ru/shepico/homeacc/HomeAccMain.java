@@ -1,6 +1,7 @@
 package ru.shepico.homeacc;
 
 import ru.shepico.homeacc.gui.MainWindow;
+import ru.shepico.homeacc.gui.Operation;
 import ru.shepico.homeacc.gui.UserLogin;
 
 import javax.swing.*;
@@ -9,7 +10,8 @@ import java.awt.event.ActionListener;
 
 public class HomeAccMain implements ActionListener {
     JFrame loginWindow; // окно входа
-    JFrame mainWindow; //основное окно
+    JFrame mainWindow; //окно основное
+    JFrame operationWindow; //окно операций
     //
 
     public static void main (String[] args) {
@@ -21,7 +23,8 @@ public class HomeAccMain implements ActionListener {
     }
 
     private HomeAccMain(){
-        initLoginWindow();
+        //initLoginWindow();
+        initOperation();
     }
 
     private void initLoginWindow() {
@@ -30,6 +33,10 @@ public class HomeAccMain implements ActionListener {
 
     private void initMainWindow(){
         mainWindow = new MainWindow();
+    }
+
+    private void initOperation() {
+        operationWindow = new Operation(this);
     }
 
 

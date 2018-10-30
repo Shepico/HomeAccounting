@@ -1,5 +1,6 @@
 package ru.shepico.homeacc.gui;
 
+import ru.shepico.homeacc.ConstantAccount;
 import ru.shepico.homeacc.HomeAccMain;
 
 import javax.swing.*;
@@ -7,7 +8,7 @@ import javax.swing.text.MaskFormatter;
 import java.awt.*;
 
 public class UserLogin extends JFrame{
-    private final int GAP_TABLE = 5;
+    //private final int GAP_TABLE = 5;
     private final String TITLE = "Login user";
     //
     private JPanel pnlMain;
@@ -46,7 +47,7 @@ public class UserLogin extends JFrame{
         btnCheckInField.setBorder(null);
         btnCheckInField.addActionListener(listener);
         //////////////////
-        pnlMain = new JPanel(new GridLayout(5,1, GAP_TABLE, GAP_TABLE));
+        pnlMain = new JPanel(new GridLayout(5,1, ConstantAccount.GAP_TABLE, ConstantAccount.GAP_TABLE));
         pnlMain.add(titleWindow);
         pnlMain.add(emailField);
         pnlMain.add(passwordField);
