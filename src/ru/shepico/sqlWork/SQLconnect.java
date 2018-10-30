@@ -101,7 +101,7 @@ public class SQLconnect {
         try {
             //result.last();
             //int count = result.getRow();
-            arrCurrency = new ArrayList<>();
+        //    arrCurrency = new ArrayList<>();
             //result.first();
              while (result.next() ) {
                  /*int id = result.getInt("id");

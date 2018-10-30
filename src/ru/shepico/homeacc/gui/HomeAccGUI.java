@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-public class HomeAccGUI extends JFrame{
+/*public class HomeAccGUI extends JFrame{
     private final JPanel mainPanel = new JPanel(new BorderLayout());
     private JPanel leftPanel;
     private JPanel rightTrnPanel;
@@ -53,7 +53,7 @@ public class HomeAccGUI extends JFrame{
         //setIconImage();
         //
        /* mainPanel = new Panel();
-        mainPanel.setLayout(new BorderLayout());*/
+        mainPanel.setLayout(new BorderLayout());
         //
         String     root  = "Счета";
         String[]   nodes = new String[]  {"Наличка", "Карты"};
@@ -82,11 +82,11 @@ public class HomeAccGUI extends JFrame{
         //
 
 
-        /*JPanel panelWest = new JPanel();*/
+        /*JPanel panelWest = new JPanel();
         initMenu();
         setJMenuBar(mainMenu);
 
-        /*mainPanel.add(accountTree, BorderLayout.WEST);*/
+        /*mainPanel.add(accountTree, BorderLayout.WEST);
         initPaneLeft();
         mainPanel.add(leftPanel, BorderLayout.WEST);
         /*mainPanel.add(leftBtnPanel, BorderLayout.WEST);
@@ -109,7 +109,7 @@ public class HomeAccGUI extends JFrame{
         newRow.add("Кошелек");
         mod.addRow(newRow);
 
-        //*/
+        //
         //tableCurrency = new JTable (6,2);
         //
 
@@ -185,7 +185,7 @@ public class HomeAccGUI extends JFrame{
         JMenu aboutMenu = new JMenu("About");
 
         JMenuItem menuItem = new JMenuItem("Currency");
-        menuItem.addMouseListener(new MouseEventListener());
+        //menuItem.addMouseListener(new MouseEventListener());
         catalogMenu.add(menuItem);
 
         mainMenu.add(fileMenu);
@@ -204,39 +204,8 @@ public class HomeAccGUI extends JFrame{
             }
         });
     }
-//////////////////////////////////////////////
-    class MouseEventListener implements MouseListener {
-        @Override
-        public void mouseClicked(MouseEvent e) {
 
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-            if (e.getSource().getClass().isInstance(new JMenuItem())) {
-                JMenuItem menuItem = (JMenuItem)e.getSource();
-                String textMenu = menuItem.getText();
-                new CatalogGUI(textMenu);
-            }else {
-                System.out.println("Не пункт меню");
-            }
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
     }
 }
+
+*/
