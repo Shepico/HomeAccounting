@@ -1,5 +1,6 @@
 package ru.shepico.homeacc.gui;
 
+import ru.shepico.homeacc.ConstantAccount;
 import ru.shepico.homeacc.directories.Currency;
 
 import javax.swing.*;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class CurrencyGUI extends JFrame
 {
-    private JTable tableCurrency;
+    private JTable table;
     private JPanel panel;
 
     public static void main (String[] args){
@@ -36,7 +37,7 @@ public class CurrencyGUI extends JFrame
         //
         panel = new JPanel();
         showCurrency();
-        panel.add(tableCurrency);
+        panel.add(table);
         //
         add(panel, BorderLayout.CENTER);
         //
@@ -46,9 +47,9 @@ public class CurrencyGUI extends JFrame
     }
 
     private void showCurrency(){
-        tableCurrency = new JTable(0,2);
+        table = new JTable(0,2);
         ArrayList<Currency> list = createListCurrency();
-        DefaultTableModel model = (DefaultTableModel) tableCurrency.getModel();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
         Object[] row = new Object[2];
         for (int i=0; i < list.size(); i++) {
             row[0] = list.get(i).getId();
@@ -61,21 +62,23 @@ public class CurrencyGUI extends JFrame
     private ArrayList<Currency> createListCurrency(){
         Connection connect;
         Statement stmt;
+        Currency currency;
         ArrayList<Currency> listCurrency = new ArrayList<Currency>();
         try {
             Class.forName("org.sqlite.JDBC");
-            connect = DriverManager.getConnection("jdbc:sqlite:accDB.db");
+            connect = DriverManager.getConnection("jdbc:sqlite:" + ConstantAccount.NAME_DB + ".db");
             stmt = connect.createStatement();
             String query = "select * from currency";
             ResultSet rs = stmt.executeQuery(query);
-            Currency currency;
 
             while(rs.next() ) {
                 currency = new Currency(rs.getInt("id"), rs.getString("name"));
                 listCurrency.add(currency);
             }
+            stmt.close();
+            connect.close();
 
-        } catch ( Exception e ) {
+        } catch (Exception e ) {
             e.printStackTrace();
         }
 

@@ -1,50 +1,45 @@
 package ru.shepico.homeacc.directories;
 
-public class Account implements Idirectory {
+public class Account{
+    private int id;
     private String name;
-    private String currency;
-    private Account parent;
+    private boolean isGroup;
+    private int currencyID;
+    private int parentID;
+    private int userID;
 
-    public Account (String name, String currency, Account parrent) {
+    public Account (int id, String name, boolean isGroup, int currencyID, int parentID, int userID){
+        this.id = id;
         this.name = name;
-        this.currency = currency;
-        this.parent = parent;
-        //this.addElement();
-
+        this.isGroup = isGroup;
+        this.currencyID = currencyID;
+        this.parentID = parentID;
+        this.userID = userID;
     }
 
-    @Override
-    public String addElement(String[] value ) {
-        String newName = "";
-        for (int i=0; i<value.length; i++) {
-            if ("".equals(newName)) {
-                newName = "'" + value[i] + "'";
-            }
-            else {
-                 newName = newName + ", '" + value[i] + "'";
-             }
-        }
-        String sqlQuery = "INSERT INTO account (acc_name) VALUES ('" + newName + "');";
-        return sqlQuery;
+
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public boolean removeElement() {
-        return false;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public boolean changeElement() {
-        return false;
+    public boolean isGroup() {
+        return isGroup;
     }
 
-    @Override
-    public boolean toArchiveElement() {
-        return false;
+    public int getCurrencyID() {
+        return currencyID;
     }
 
-    @Override
-    public boolean fromArchiveElement() {
-        return false;
+    public int getParentID() {
+        return parentID;
     }
+
+    public int getUserID() {
+        return userID;
+    }
+
 }

@@ -1,5 +1,6 @@
 package ru.shepico.sqlWork;
 
+import ru.shepico.homeacc.ConstantAccount;
 import ru.shepico.homeacc.directories.Currency;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 public class SQLconnect {
     private Connection connect;
     private Statement stmt;
-    private final String nameDB = "accDB";
+
 
     public SQLconnect() {
         connect = null;
@@ -18,7 +19,7 @@ public class SQLconnect {
     private Connection openDB() {
         try {
             Class.forName("org.sqlite.JDBC");
-            connect = DriverManager.getConnection("jdbc:sqlite:" + nameDB + ".db");
+            connect = DriverManager.getConnection("jdbc:sqlite:" + ConstantAccount.NAME_DB + ".db");
             connect.setAutoCommit(false);
             //System.out.println("Opened database successfully");
             return (connect);
