@@ -108,7 +108,7 @@ public class SQLconnect {
                  String name = result.getString("name");
                  System.out.println( "ID = " + id );
                  System.out.println( "NAME = " + name );*/
-                 next = new Currency(result.getString("name"), result.getInt("id"));
+                 next = new Currency(result.getInt("id"), result.getString("name"));
                  arrCurrency.add(next);
              }
             return arrCurrency;
