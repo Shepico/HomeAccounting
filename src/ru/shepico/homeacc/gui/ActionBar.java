@@ -1,9 +1,15 @@
 package ru.shepico.homeacc.gui;
 
+import ru.shepico.homeacc.directories.Idirectory;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ActionBar extends JPanel {
+
+
     private JButton btnAdd;
     private JButton btnUpdate;
     private JButton btnRemove;
@@ -47,5 +53,9 @@ public class ActionBar extends JPanel {
         add(btnToArchive);
         add(btnFromArchive);
 
+    }
+
+    public JButton getBtnAdd() {
+        return btnAdd;
     }
 }

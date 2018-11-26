@@ -1,8 +1,10 @@
 package ru.shepico.homeacc.directories;
 
+import java.awt.event.ActionListener;
+
 public interface Idirectory {
 
-    String addElement (String[] str);
+    boolean addElement ();
     boolean removeElement();
     boolean changeElement();
     boolean toArchiveElement();

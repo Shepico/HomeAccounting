@@ -2,22 +2,24 @@ package ru.shepico.homeacc.gui;
 
 import ru.shepico.homeacc.ConstantAccount;
 import ru.shepico.homeacc.directories.Currency;
+import ru.shepico.homeacc.directories.Idirectory;
 
 import javax.swing.*;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CurrencyGUI extends JFrame
+public class CurrencyGUI extends JFrame implements Idirectory
 {
     private JTable table;
     private JPanel panel;
+    private ActionBar aBar;
 
     public static void main (String[] args){
         SwingUtilities.invokeLater(new Runnable() {
@@ -28,6 +30,8 @@ public class CurrencyGUI extends JFrame
     }
 
     public CurrencyGUI() {
+        aBar = new ActionBar();
+        initListenerActionBar();
         initFrame();
     }
 
@@ -35,7 +39,9 @@ public class CurrencyGUI extends JFrame
         setTitle("Валюта");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //
-        add(new ActionBar(true, true, false, true, false),BorderLayout.NORTH);
+
+
+        add(aBar, BorderLayout.NORTH);
         //
         panel = new JPanel();
         showCurrency();
@@ -87,5 +93,35 @@ public class CurrencyGUI extends JFrame
         return listCurrency;
 
 
+    }
+    //
+    private void initListenerActionBar(){
+        aBar.getBtnAdd().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                addElement();
+            }
+        });
+    }
+    //Имплиминтированные методы
+    public boolean addElement() {
+        DefaultTableModel model= (DefaultTableModel) table.getModel();
+        model.addRow(new Object[model.getRowCount()]);
+        return false;
+    }
+
+    public boolean removeElement() {
+        return false;
+    }
+
+    public boolean changeElement() {
+        return false;
+    }
+
+    public boolean toArchiveElement() {
+        return false;
+    }
+
+    public boolean fromArchiveElement() {
+        return false;
     }
 }
