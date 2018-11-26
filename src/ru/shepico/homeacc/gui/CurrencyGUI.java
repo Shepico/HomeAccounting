@@ -35,6 +35,8 @@ public class CurrencyGUI extends JFrame
         setTitle("Валюта");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         //
+        add(new ActionBar(true, true, false, true, false),BorderLayout.NORTH);
+        //
         panel = new JPanel();
         showCurrency();
         panel.add(table);
